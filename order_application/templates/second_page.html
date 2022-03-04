@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <div class="orders">
+            {% for order in orders %}
+                <div class="order">
+                    <h2> <a href="#">{{order.orderId}}</a></h2>
+                    <p>{{order.customer}}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>

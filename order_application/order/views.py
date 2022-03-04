@@ -1,7 +1,5 @@
 from django.shortcuts import render
 from .models import Order
 
-# def order_list(request):
-#     orders = Order.objects.all().order_by('orderID')
-#     return render(request, 'orders/order_list.html')
-# Create your views here.
+def order_detail(request):
+    return render(request, 'order/order_detail.html')
