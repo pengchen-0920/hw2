@@ -1,17 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Second page</title>
     </head>
+
+
     <body>
-        <div class="orders">
-            {% for order in orders %}
-                <div class="order">
-                    <h2> <a href="#">{{order.orderId}}</a></h2>
-                    <p>{{order.customer}}</p>
-                </div>
-            {% endfor %}
-        </div>
+        <form method="post" action="{% url 'second_page' %}">
+            {% csrf_token %}
+            <input  type="text" placeholder='Search customer' name='searched'>
+            <button type="submit">Search</button>
+        </form>
+        {% if searched and orders %}
+            <p>you have searched for {{searched}}</p>
+            <div class="orders">
+                <table>
+                    <tr>
+                        <th colspan="2">Order</th>
+                    </tr>
+                    <tr>
+                      <th>ID</th>
+                      <th>customer</th>
+                    </tr>
+                {% for order in orders %}
+                    <div class="order">
+                          <tr>
+                            <td><a href="#">{{order.orderId}}</a></td>
+                            <td>{{order.customer}}</td>
+                          </tr>
+                    </div>
+                {% endfor %}
+                </table>
+            </div>
+        {% else %}
+            <div class="orders">
+
+                <table>
+                    <tr>
+                        <th colspan="2">Order</th>
+                    </tr>
+                    <tr>
+                      <th>ID</th>
+                      <th>customer</th>
+                    </tr>
+                    <tr>
+                      <td colspan="2">No Orders</td>
+                    </tr>
+                </table>
+            </div>
+        {% endif %}
+
+
     </body>
 </html>

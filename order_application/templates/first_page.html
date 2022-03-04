@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Second page</title>
     </head>
     <body>
-        <h1> This is the homepage </h1>
+        <form method="post" action="{% url 'second_page' %}">
+            {% csrf_token %}
+            <input  type="text" placeholder='Search customer' name='searched'>
+            <button type="submit">Search</button>
+        </form>
+        <div class="orders">
+
+            <table>
+                <tr>
+                    <th colspan="2">Order</th>
+                </tr>
+                <tr>
+                  <th>ID</th>
+                  <th>customer</th>
+                </tr>
+                <tr>
+                  <td colspan="2">No Orders</td>
+                </tr>
+
+            </table>
+        </div>
     </body>
 </html>

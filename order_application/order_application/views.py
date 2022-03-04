@@ -6,6 +6,12 @@ def first_page(request):
     return render(request, 'first_page.html')
 
 def second_page(request):
-    orders = Order.objects.all().order_by('orderId')
+
+    if request.method == "POST":
+        searched = request.POST['searched']
+        orders = Order.objects.filter(customer__contains=searched)
+        return render(request, 'second_page.html', {'orders': orders, 'searched': searched})
+    else:
+        return render(request, 'first_page.html')
+
     # the third argument can be sent from view to template
-    return render(request, 'second_page.html', {'orders': orders})
