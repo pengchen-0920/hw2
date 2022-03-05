@@ -3,5 +3,5 @@ from django.urls import path, include
 from.import views
 
 urlpatterns = [
-    path('', views.order_detail),
+    path('<orderId>', views.order_detail, name='detail'),
 ]
